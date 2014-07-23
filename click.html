@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+div {width: 150px; padding: 4em; background: black; margin-bottom: 1em; text-align: center;}
+
+button {margin-left: 8em;}
+</style>
+</head>
+<body>
+
+<div id ='clickBox'>
+<p id ='boxText'>Click on this box!</p>
+</div>
+
+<button id='1' type="button" onclick='start()'>Start!</button>
+
+<p id="demo"></p>
+<P id="time"></p>
+<p id="result"></p>
+<p id="best"></p>
+
+<script>
+var counter = 0;
+var timecounter = 0;
+var bestScore = 0;
+
+function start() {
+
+function countIncrementer() {counter +=1;}
+
+var myVar = setInterval(function () {
+    timecounter = timecounter + 1;
+    document.getElementById('boxText').innerHTML = "Click on this box!";
+    document.getElementById('time').innerHTML = "Time: " + timecounter;
+    document.getElementById('demo').innerHTML = "Clicks: " + counter;
+    
+    if (timecounter === 60) {
+        document.getElementById('result').innerHTML = "Result: " + counter/60 + " clicks per second";
+        if (counter/60 > bestScore) {
+            document.getElementById('best').innerHTML = "Best: " + counter/60;}
+        document.getElementById('boxText').innerHTML = "Done!";
+        clearTimeout(myVar);
+        clickArea.removeEventListener("click", countIncrementer);
+        counter = 0;
+        timecounter = 0;
+        document.getElementById('1').disabled = false;
+        }
+      }, 1000);
+      
+     var clickArea = document.getElementById('clickBox');
+     document.getElementById('boxText').style.color = 'white';
+     clickArea.addEventListener("click", countIncrementer);
+     
+     document.getElementById('1').disabled = true;
+    }
+
+
+</script>
+</body>
+</html>
